@@ -1,67 +1,57 @@
-# @architecturex/utils.cx
+# @architecturex/utils.dates
 
-## cx(...classes: any): string
-
-The cx function is a utility to conditionally concatenate class names into a single string. This is particularly useful when working with CSS in JavaScript frameworks or libraries, such as React, where class names might be dynamic.
+This JavaScript utility library provides a set of functions for handling date-related operations. It's designed to facilitate common date manipulations, such as formatting dates, calculating rates based on months, determining if a date is reserved, and more. This library can be particularly useful in applications dealing with reservations, event planning, or any scenario where date manipulation is essential.
 
 ### Installation
 
-`npm install @architecturex/utils.cx`
+`npm install @architecturex/utils.dates`
 
 ### Usage
 
 ```javascript
-import cx from '@architecturex/utils.cx'
+import dates from '@architecturex/utils.dates'
 ```
 
-Call the cx function with any number of arguments to concatenate them into a single string of class names:
+Then, you can use the various functions provided:
 
 ```javascript
-const className = cx('class1', 'class2', condition && 'class3')
+// Example: Get a formatted date
+const formattedDate = dates.getDashedDate(new Date())
+console.log(formattedDate)
+
+// Example: Check if a date is reserved
+const isReserved = dates.isDateReserved(new Date(), reservationsArray)
+console.log(isReserved)
 ```
 
-### Arguments
+### Features
 
 The `cx` function can accept multiple arguments of various types:
 
-- **String**: The string is directly added to the result.
-- **Number**: Numbers are converted to strings and added to the result.
-- **Array**: Nested arrays are flattened. Each element in the array is processed based on its type (can be any of the supported types).
-- **Object**: Object properties that have truthy values are added to the result. For custom objects with a custom `toString` method that doesn't rely on native code, the `toString` method's output is added.
+- **Dashed Date Formatting:** Convert Date objects into 'YYYY-MM-DD' format.
+- **Date Creation Without Timezone:** Create a Date object from a string without timezone issues.
+- **Date Reservation Checking:** Check if a given date falls within a range of reserved dates.
+- **Date Formatting:** Format dates into human-readable strings, supporting different locales.
+- **Monthly Rate Calculation:** Determine rates based on the month of the year.
+- **Days Until a Date:** Calculate the number of days until a specific date.
+- **Year-based Reservation Filtering:** Filter reservations based on the year.
+- **Date Addition:** Add a specified number of days to a date.
+- **Long Date Formatting:** Convert a date into a long, descriptive format.
+- **Month and Day Extraction:** Extract and format the month and day from a date string.
+- **Date Validation:** Validate if a given string is a proper date.
+- **Weekend Checking:** Determine if a date is a weekend.
+- **Day of the Week Calculation:** Find the day of the week for a given date.
+- **Date Difference Calculation:** Calculate the difference in days between two dates.
+- **Two-Digit Day and Month Formatting:** Format days and months into two digits.
+- **Today Checking:** Check if a given date is today.
+- **Event Existence Checking:** Check if events exist within a given date range.
+- **Available Date Calculation:** Calculate available dates based on reservations and other factors.
 
-### Examples
+### Functions
 
-1. Basic strings:
-
-```javascript
-cx('class1', 'class2') // "class1 class2"
-```
-
-2. Conditional classes:
-
-```javascript
-const isActive = true
-
-cx('class1', isActive && 'active') // "class1 active"
-```
-
-3. Arrays
-
-```javascript
-cx(['class1', 'class2', ['nested1', 'nested2']]) // "class1 class2 nested1 nested2"
-```
-
-4. Objects:
-
-```javascript
-const buttonStyles = {
-  btn: true,
-  'btn-primary': true,
-  'btn-disabled': false
-}
-
-cx(buttonStyles) // "btn btn-primary"
-```
+- **getDashedDate(date: Date):** Returns a string in 'YYYY-MM-DD' format.
+- **createDateWithoutTimezone(dateStr: string):** Creates a Date object from a string.
+- **isDateReserved(date: Date, reservations: Array, forceValidation: boolean):** Checks if a date is within reserved dates.
 
 ### Contribution
 
